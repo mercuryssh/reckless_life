@@ -17,7 +17,7 @@ class ArticlesView(APIView):
     def get(self, request, *arg, **kwargs):
         if "name" in kwargs:
             try:
-                query_set = models.Article.objects.get(url=kwargs['name'])
+                query_set = models.Article.objects.get(url_name=kwargs['name'])
                 return Response(ArticleSerializer(query_set, many=False).data)
             except:
                 return Response({"err": "Post not found"})

@@ -17,7 +17,7 @@ class Tag(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=99)
     description = models.CharField(max_length=255)
-    url = models.CharField(max_length=99)
+    url_name = models.CharField(max_length=99, unique=True)
     cover_url = models.CharField(max_length=255)
     content = models.TextField()
     autor_id = models.ForeignKey(User, on_delete=models.CASCADE)
