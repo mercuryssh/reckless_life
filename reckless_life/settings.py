@@ -14,7 +14,7 @@ from pathlib import Path
 from os import getenv
 import django_heroku
 
-if getenv('DEBUG') != False:
+if getenv('DEBUG') != 'True':
     from decouple import config
     SECRET_KEY = config('SECRET_KEY')
 
