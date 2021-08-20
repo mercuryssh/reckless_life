@@ -17,6 +17,7 @@ import django_heroku
 if getenv('DEBUG') != 'True':
     from decouple import config
     SECRET_KEY = config('SECRET_KEY')
+    DEBUG = True
 
 else:
     SECRET_KEY = getenv('SECRET_KEY')
