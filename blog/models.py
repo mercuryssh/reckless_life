@@ -20,6 +20,7 @@ class Article(models.Model):
     url_name = models.CharField(max_length=99, unique=True)
     cover_url = models.CharField(max_length=255)
     content = models.TextField()
+    date = models.DateField(auto_now_add=True)
     autor_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
