@@ -33,3 +33,10 @@ class ArticleTag(models.Model):
 
     def __str__(self):
         return f"{self.tag_id.title} - {self.article_id.title}"
+
+
+class ProjectPost(models.Model):
+    name = models.CharField(max_length=40)
+    description = models.CharField(max_length=90)
+    cover_url = models.CharField(max_length=255)
+    url_name = models.CharField(max_length=99, unique=True)
