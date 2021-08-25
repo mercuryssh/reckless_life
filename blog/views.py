@@ -23,7 +23,7 @@ class ArticlesView(APIView):
                 return Response({"err": "Post not found"})
 
         query_set = models.Article.objects.all()
-        serialize = ArticleItemSerializer(query_set, many=True)
+        serialize = ArticlePreviewSerializer(query_set, many=True)
         return Response(serialize.data)
 
 

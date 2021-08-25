@@ -8,10 +8,10 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ArticleItemSerializer(serializers.ModelSerializer):
+class ArticlePreviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Article
-        fields = ('title', 'description', 'url_name', 'date')
+        fields = ('title', 'description', 'url_name', 'date','tags')
 
 
 class ProjectBlogSerializer(serializers.ModelSerializer):
