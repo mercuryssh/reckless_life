@@ -31,9 +31,13 @@ class ProjectsBlogView(APIView):
     def get(self, request, *arg, **kwargs):
         if "name" in kwargs:
             try:
-                qs = models.ProjectPost.objects.get(url_name=kwargs['name'])
-                return Response(ProjectBlogSerializar(qs, many=False).data)
-            except:
+                qs = models.ProjectPost.objects.get(
+                    url_name=kwargs['name'])
+                serialize = ProjectBlogSerializer(qs, many=False).data
+                return Response(serialize)
+
+            except Exception as e:
+                print(e)
                 return Response({"err": "Project not found"})
         qs = models.ProjectPost.objects.all()
-        return Response(ProjectBlogSerializar(qs, many=True).data)
+        return Response(ProjectBlogSerializer(qs, many=True).data)

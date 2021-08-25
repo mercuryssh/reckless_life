@@ -11,18 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from os import getenv
+from os import environ
 import django_heroku
 
-if getenv('DEBUG') != 'True':
-    from decouple import config
-    SECRET_KEY = config('SECRET_KEY')
-    DEBUG = True
-
-else:
-    SECRET_KEY = getenv('SECRET_KEY')
-    DEBUG = False
-
+DEBUG = environ['DEBUG']
+SECRET_KEY = environ['SECRET_KEY']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

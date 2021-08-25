@@ -14,7 +14,7 @@ class ArticleItemSerializer(serializers.ModelSerializer):
         fields = ('title', 'description', 'url_name', 'date')
 
 
-class ProjectBlogSerializar(serializers.ModelSerializer):
+class ProjectBlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ProjectPost
-        fields = '__all__'
+        fields = "__all__"
