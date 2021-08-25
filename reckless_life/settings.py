@@ -11,17 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from os import getenv
+from os import environ
 import django_heroku
 
-if getenv('DEBUG') != False:
-    from decouple import config
-    SECRET_KEY = config('SECRET_KEY')
-
-else:
-    SECRET_KEY = getenv('SECRET_KEY')
-    DEBUG = False
-
+DEBUG = environ['DEBUG']
+SECRET_KEY = environ['SECRET_KEY']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -132,5 +126,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%Y-%m-%d",
+}
 
 django_heroku.settings(locals())

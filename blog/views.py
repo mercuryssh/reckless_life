@@ -21,6 +21,23 @@ class ArticlesView(APIView):
                 return Response(ArticleSerializer(query_set, many=False).data)
             except:
                 return Response({"err": "Post not found"})
+
         query_set = models.Article.objects.all()
-        serialize = ArticleSerializer(query_set, many=True)
+        serialize = ArticlePreviewSerializer(query_set, many=True)
         return Response(serialize.data)
+
+
+class ProjectsBlogView(APIView):
+    def get(self, request, *arg, **kwargs):
+        if "name" in kwargs:
+            try:
+                qs = models.ProjectPost.objects.get(
+                    url_name=kwargs['name'])
+                serialize = ProjectBlogSerializer(qs, many=False).data
+                return Response(serialize)
+
+            except Exception as e:
+                print(e)
+                return Response({"err": "Project not found"})
+        qs = models.ProjectPost.objects.all()
+        return Response(ProjectBlogSerializer(qs, many=True).data)
